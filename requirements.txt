@@ -1,3 +1,5 @@
 espnet==202207
 numpy==1.22.4
+typeguard==2.13.3
 six
+fastapi~=0.111.0

@@ -15,7 +15,7 @@ You can download the best performing models below.
 
 To convert your audio file to text, please make sure it follows a wav format with sample rate of 16k. Unzip the pre-trained model in the current directory, and install the necessary packages by running ```pip install -r requirements.txt```. To perform the evaluation please run:
 ```
-python recognize.py -f <path_to_your_wav>
+python recognize.py --wav_path <path_to_your_wav>
 ```
 
 ## Datasets
@@ -26,6 +26,11 @@ There are multiple datasets involved, including [KSC](https://docs.google.com/fo
 ## Training
 
 Our code builds upon [ESPnet](https://github.com/espnet/espnet), and requires prior installation of the framework for DNN training. Please follow the [installation guide](https://espnet.github.io/espnet/installation.html) and put the TurkicASR folder inside `espnet/egs2/` directory. Run the traning scripts with `./run.sh`
+
+
+## How to run
+
+1. uvicorn server:app --host 0.0.0.0 --port 9000
 
 ## Citation
 ```

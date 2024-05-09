@@ -1,0 +1,5 @@
+.idea
+exp
+*.wav
+*.ogg
+__pycache__
