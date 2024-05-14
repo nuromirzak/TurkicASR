@@ -1,13 +1,14 @@
 import subprocess
+
 import wave
 import numpy as np
 from espnet2.bin.asr_inference import Speech2Text
-import torch
 
 
 class AudioService:
     def __init__(self):
-        cuda_available = torch.cuda.is_available()
+        # cuda_available = torch.cuda.is_available()
+        cuda_available = True
         print(f"CUDA available: {cuda_available}")
 
         self.asr_model_path = "exp/asr_train_asr_1410_raw_all_turkic_1610_char_sp"
@@ -34,15 +35,21 @@ class AudioService:
         )
 
     def convert_audio(self, input_path):
+        print("convert_audio", input_path)
         output_path = input_path.rsplit('.', 1)[0] + "_16k.wav"
+        print("output_path", output_path)
         command = ["ffmpeg", "-i", input_path, "-acodec", "pcm_s16le", "-ac", "1", "-ar", "16000", output_path]
-        subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(command)
+        print("subprocess.run(command) finished")
         return output_path
 
     def recognize(self, wavfile_path):
+        print("recognize", wavfile_path)
         with wave.open(wavfile_path, 'rb') as wavfile:
             buf = wavfile.readframes(-1)
             data = np.frombuffer(buf, dtype='int16')
         speech = data.astype(np.float16) / 32767.0
+        print("speech")
         results = self.speech2text(speech)
+        print("results")
         return results[0][0]

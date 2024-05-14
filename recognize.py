@@ -18,6 +18,7 @@ def main():
     if os.path.exists(original_wav_file):
         audio_service = AudioService()
         wav_file = audio_service.convert_audio(original_wav_file)
+        print("wav_file", wav_file)
         recognized_text = audio_service.recognize(wav_file)
         print("Recognized Text:", recognized_text)
 

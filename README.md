@@ -31,6 +31,10 @@ Our code builds upon [ESPnet](https://github.com/espnet/espnet), and requires pr
 ## How to run
 
 1. uvicorn server:app --host 0.0.0.0 --port 9000
+2. python -c "import torch; print(torch.__version__)"
+3. pip uninstall torch torchvision torchaudio -y
+4. pip install torch==1.12.0+cu116 torchvision==0.13.0+cu116 torchaudio==0.12.0 --extra-index-url https://download.pytorch.org/whl/cu116
+5. Issue: https://github.com/IS2AI/TurkicASR/issues/1
 
 ## Citation
 ```
