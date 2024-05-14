@@ -18,6 +18,21 @@ app.add_middleware(
 audio_service = AudioService()
 
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, query: str = None):
+    return {"item_id": item_id, "query": query}
+
+
+@app.post("/items/")
+def create_item(item: dict):
+    return {"item_name": item["name"], "item_value": item["value"]}
+
+
 @app.post("/recognize-audio/")
 async def recognize_audio(file: UploadFile = File(...)):
     temp_file_path = f"temp_{file.filename}"
